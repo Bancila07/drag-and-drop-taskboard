@@ -23,12 +23,11 @@ const TaskboardContent = styled.div`
   height: 100%;
   padding: 0.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const defaultItems = {
   [TaskboardItemStatus.TO_DO]: [],
-  [TaskboardItemStatus.IN_PROGRESS]: [],
   [TaskboardItemStatus.DONE]: [],
 };
 
@@ -40,13 +39,12 @@ function Taskboard() {
     defaultItems
   );
 
-  const handleDragEnd: DragDropContextProps['onDragEnd'] = ({
+  const handleDragEnd: DragDropContextProps ['onDragEnd'] = ({
     source,
     destination,
   }) => {
     setItemsByStatus((current) =>
       produce(current, (draft) => {
-        // dropped outside the list
         if (!destination) {
           return;
         }
@@ -90,7 +88,7 @@ function Taskboard() {
 
   const initialValues = useMemo<TaskboardItemFormValues>(
     () => ({
-      title: itemToEdit?.title ?? '',
+      select: itemToEdit?.select ?? '',
       description: itemToEdit?.description ?? '',
     }),
     [itemToEdit]
@@ -111,7 +109,6 @@ function Taskboard() {
                     ? () => openTaskItemModal(null)
                     : undefined
                 }
-                onEdit={openTaskItemModal}
                 onDelete={handleDelete}
               />
             ))}
@@ -125,16 +122,14 @@ function Taskboard() {
           setItemsByStatus((current) =>
             produce(current, (draft) => {
               if (itemToEdit) {
-                // Editing existing item
                 const draftItem = Object.values(draft)
                   .flatMap((items) => items)
                   .find((item) => item.id === itemToEdit.id);
                 if (draftItem) {
-                  draftItem.title = values.title;
-                  draftItem.description = values.description;
+                  draftItem.select = values.select;
+                  draftItem.description = values.select;
                 }
               } else {
-                // Adding new item as "to do"
                 draft[TaskboardItemStatus.TO_DO].push({
                   ...values,
                   id: generateId(),

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, Modal, Typography, Dropdown, Menu } from 'antd';
 import { TaskboardItem, TaskboardItemStatus } from './TaskboardTypes';
-import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
+import { DeleteOutlined, MoreOutlined } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 import styled from 'styled-components';
 import BaseTooltip from '../shared/BaseTooltip';
@@ -18,9 +18,6 @@ const StyledCard = styled(Card)<StyledCardProps>`
 
 const TaskboardItemCardTitle = styled(Typography.Title)`
   white-space: pre-wrap;
-  // To make ellipsis of the title visible.
-  // Without this margin, it can be go behind the "extra" component.
-  // So, we give it a little space.
   margin-right: 0.25rem;
 `;
 
@@ -32,7 +29,6 @@ export interface TaskboardItemCardProps {
   item: TaskboardItem;
   isDragging: boolean;
   status: TaskboardItemStatus;
-  onEdit: (itemToEdit: TaskboardItem) => void;
   onDelete: (args: {
     status: TaskboardItemStatus;
     itemToDelete: TaskboardItem;
@@ -43,7 +39,6 @@ function TaskboardItemCard({
   item,
   status,
   isDragging,
-  onEdit,
   onDelete,
 }: TaskboardItemCardProps) {
   return (
@@ -51,14 +46,10 @@ function TaskboardItemCard({
       $isDragging={isDragging}
       size="small"
       title={
-        <BaseTooltip overlay={item.title}>
-          {/* styled(Typography.Title) throws an error in console about 
-          forwarding ref in function components.
-          Because Typography.Title doesn't accept a ref.
-          So, we just placed a span tag here. */}
+        <BaseTooltip overlay={item.select}>
           <span>
             <TaskboardItemCardTitle level={5} ellipsis={{ rows: 2 }}>
-              {item.title}
+              {item.select}
             </TaskboardItemCardTitle>
           </span>
         </BaseTooltip>
@@ -67,20 +58,12 @@ function TaskboardItemCard({
         <Dropdown
           overlay={
             <Menu>
-              <Menu.Item icon={<EditOutlined />} onClick={() => onEdit(item)}>
-                Edit
-              </Menu.Item>
               <DeleteMenuItem
                 icon={<DeleteOutlined />}
                 onClick={() =>
-                  Modal.confirm({
-                    title: 'Delete?',
-                    content: `Are you sure to delete "${item.title}"?`,
-                    onOk: () =>
-                      onDelete({
-                        status,
-                        itemToDelete: item,
-                      }),
+                  onDelete({
+                    status,
+                    itemToDelete: item,
                   })
                 }
               >

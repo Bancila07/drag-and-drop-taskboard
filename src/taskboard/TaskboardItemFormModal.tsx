@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { Modal, Form, ModalProps, Input } from 'antd';
+import {Modal, Form, ModalProps, Input, Select} from 'antd';
 import { TaskboardItem } from './TaskboardTypes';
 
 export type TaskboardItemFormValues = Pick<
   TaskboardItem,
-  'title' | 'description'
+  'select' | 'description'
 >;
 
 type TaskboardItemFormModalProps = Pick<ModalProps, 'visible'> & {
@@ -25,7 +25,6 @@ function TaskboardItemFormModal({
 
   useEffect(() => {
     if (visible) {
-      // Focus on the first input when the modal is opened
       inputRef.current?.focus();
       form.resetFields();
     }
@@ -33,10 +32,9 @@ function TaskboardItemFormModal({
 
   return (
     <Modal
-      title="Add Item"
+      title="Add Training"
       visible={visible}
       destroyOnClose
-      // To make dynamically changing initialValues work with Form
       forceRender
       onCancel={onCancel}
       onOk={() => form.submit()}
@@ -53,17 +51,24 @@ function TaskboardItemFormModal({
         }}
       >
         <Form.Item
-          name="title"
-          label="Title"
-          rules={[
-            { required: true, message: "'Title' is required" },
-            {
-              max: 100,
-              message: "'Title' can not be longer than 100 characters",
-            },
-          ]}
-        >
-          <Input ref={inputRef} autoFocus />
+            name="select"
+            label="Day"
+            rules={[
+              { required: true, message: "'Day' is required" },
+              {
+                max: 400,
+                message: "'Day' can not be select",
+              },
+            ]}>
+          <Select>
+            <Select.Option value="Monday">Monday</Select.Option>
+            <Select.Option value="Tuesday">Tuesday</Select.Option>
+            <Select.Option value="Wednesday">Wednesday</Select.Option>
+            <Select.Option value="Thursday">Thursday</Select.Option>
+            <Select.Option value="Friday">Friday</Select.Option>
+            <Select.Option value="Saturday">Saturday</Select.Option>
+            <Select.Option value="Sunday">Sunday</Select.Option>
+          </Select>
         </Form.Item>
         <Form.Item
           name="description"

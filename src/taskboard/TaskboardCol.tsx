@@ -4,6 +4,7 @@ import { Button, Card } from 'antd';
 import { TaskboardItem, TaskboardItemStatus } from './TaskboardTypes';
 import TaskboardItemCard, { TaskboardItemCardProps } from './TaskboardItemCard';
 import { colors } from '../shared/SharedUtils';
+import {Content} from "antd/lib/layout/layout";
 
 const TaskboardColRoot = styled(Card)`
   user-select: none;
@@ -11,15 +12,15 @@ const TaskboardColRoot = styled(Card)`
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
-  // To force each flex item to have equal width
-  // even if they have long texts with no spaces etc.
   min-width: 0;
+  
   > .ant-card-body {
     overflow: hidden;
     height: 100%;
     padding: 0;
   }
 `;
+
 
 interface DroppableRootProps {
   isDraggingOver: boolean;
@@ -28,13 +29,11 @@ interface DroppableRootProps {
 const DroppableRoot = styled.div<DroppableRootProps>`
   height: 100%;
   overflow-y: auto;
-  background-color: ${({ isDraggingOver }) =>
-    isDraggingOver ? colors.primary[2] : colors.primary[1]};
 `;
 
 export type TaskboardColProps = Pick<
   TaskboardItemCardProps,
-  'onEdit' | 'onDelete'
+   'onDelete'
 > & {
   items: TaskboardItem[];
   status: TaskboardItemStatus;
@@ -45,15 +44,14 @@ function TaskboardCol({
   items,
   status,
   onClickAdd,
-  onEdit,
   onDelete,
 }: TaskboardColProps) {
   return (
     <TaskboardColRoot
-      title={`${status} (${items.length})`}
+      title={`${status} `}
       extra={
         onClickAdd && (
-          <Button type="primary" onClick={onClickAdd}>
+          <Button   onClick={onClickAdd}  >
             Add
           </Button>
         )
@@ -80,7 +78,6 @@ function TaskboardCol({
                         item={item}
                         status={status}
                         isDragging={snapshot.isDragging}
-                        onEdit={onEdit}
                         onDelete={onDelete}
                       />
                     </div>
