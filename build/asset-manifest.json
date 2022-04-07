@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/drag-and-drop-taskboard/static/css/main.7cd7ac97.css",
+    "main.js": "/drag-and-drop-taskboard/static/js/main.d628b461.js",
+    "static/js/787.a0789f94.chunk.js": "/drag-and-drop-taskboard/static/js/787.a0789f94.chunk.js",
+    "index.html": "/drag-and-drop-taskboard/index.html",
+    "main.7cd7ac97.css.map": "/drag-and-drop-taskboard/static/css/main.7cd7ac97.css.map",
+    "main.d628b461.js.map": "/drag-and-drop-taskboard/static/js/main.d628b461.js.map",
+    "787.a0789f94.chunk.js.map": "/drag-and-drop-taskboard/static/js/787.a0789f94.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cd7ac97.css",
+    "static/js/main.d628b461.js"
+  ]
+}

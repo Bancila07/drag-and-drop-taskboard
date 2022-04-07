@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, Modal, Typography, Dropdown, Menu } from 'antd';
 import { TaskboardItem, TaskboardItemStatus } from './TaskboardTypes';
-import { DeleteOutlined, MoreOutlined } from '@ant-design/icons';
+import { DeleteOutlined,EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 import styled from 'styled-components';
 import BaseTooltip from '../shared/BaseTooltip';
@@ -29,6 +29,7 @@ export interface TaskboardItemCardProps {
   item: TaskboardItem;
   isDragging: boolean;
   status: TaskboardItemStatus;
+  onEdit: (itemToEdit: TaskboardItem) => void;
   onDelete: (args: {
     status: TaskboardItemStatus;
     itemToDelete: TaskboardItem;
@@ -39,6 +40,7 @@ function TaskboardItemCard({
   item,
   status,
   isDragging,
+  onEdit,
   onDelete,
 }: TaskboardItemCardProps) {
   return (
@@ -58,6 +60,9 @@ function TaskboardItemCard({
         <Dropdown
           overlay={
             <Menu>
+              <Menu.Item icon={<EditOutlined />} onClick={() => onEdit(item)}>
+                Edit
+              </Menu.Item>
               <DeleteMenuItem
                 icon={<DeleteOutlined />}
                 onClick={() =>

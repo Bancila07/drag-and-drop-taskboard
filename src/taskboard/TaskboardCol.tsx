@@ -9,10 +9,11 @@ import {Content} from "antd/lib/layout/layout";
 const TaskboardColRoot = styled(Card)`
   user-select: none;
   flex: 1;
-  margin: 0.5rem;
+  margin: 0 1.5rem ;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  border-radius: 10px;
   
   > .ant-card-body {
     overflow: hidden;
@@ -33,7 +34,7 @@ const DroppableRoot = styled.div<DroppableRootProps>`
 
 export type TaskboardColProps = Pick<
   TaskboardItemCardProps,
-   'onDelete'
+  'onEdit' | 'onDelete'
 > & {
   items: TaskboardItem[];
   status: TaskboardItemStatus;
@@ -44,6 +45,7 @@ function TaskboardCol({
   items,
   status,
   onClickAdd,
+  onEdit,
   onDelete,
 }: TaskboardColProps) {
   return (
@@ -77,6 +79,7 @@ function TaskboardCol({
                       <TaskboardItemCard
                         item={item}
                         status={status}
+                        onEdit={onEdit}
                         isDragging={snapshot.isDragging}
                         onDelete={onDelete}
                       />

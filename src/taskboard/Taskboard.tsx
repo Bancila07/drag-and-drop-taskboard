@@ -14,6 +14,7 @@ const generateId = () => Date.now().toString();
 const TaskboardRoot = styled.div`
   min-height: 0;
   height: 100%;
+  width: 80%;
   min-width: 800px;
   max-width: 1400px;
   margin: auto;
@@ -23,7 +24,6 @@ const TaskboardContent = styled.div`
   height: 100%;
   padding: 0.5rem;
   display: flex;
-  justify-content: space-between;
 `;
 
 const defaultItems = {
@@ -109,6 +109,7 @@ function Taskboard() {
                     ? () => openTaskItemModal(null)
                     : undefined
                 }
+                onEdit={openTaskItemModal}
                 onDelete={handleDelete}
               />
             ))}

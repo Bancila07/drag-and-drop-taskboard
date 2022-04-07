@@ -16,11 +16,11 @@ const StyledHeader = styled(Header)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.primary[1]};
+  background-color: ${colors.primary[8]};
 `;
 
 const StyledContent = styled(Content)`
-  background-color: ${colors.primary[1]};
+  background-color: ${colors.primary[8]};
 `;
 
 function App() {

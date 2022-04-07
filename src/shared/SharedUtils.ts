@@ -1,5 +1,5 @@
-import { grey } from '@ant-design/colors';
+import { cyan } from '@ant-design/colors';
 
 export const colors = {
-  primary: grey,
+  primary: cyan,
 };
