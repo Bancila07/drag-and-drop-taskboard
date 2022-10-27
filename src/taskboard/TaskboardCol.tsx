@@ -13,13 +13,14 @@ const TaskboardColRoot = styled(Card)`
   display: flex;
   flex-direction: column;
   min-width: 0;
-  border-radius: 10px;
+  border-radius: 10px ;
   
   > .ant-card-body {
     overflow: hidden;
     height: 100%;
     padding: 0;
   }
+
 `;
 
 

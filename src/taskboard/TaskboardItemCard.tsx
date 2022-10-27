@@ -13,7 +13,8 @@ interface StyledCardProps {
 const StyledCard = styled(Card)<StyledCardProps>`
   margin: 0.5rem;
   padding: 0.5rem;
-  background-color: ${({ $isDragging }) => ($isDragging ? '#fafafa' : '#fff')};
+  background-color: ${({ $isDragging }) => ($isDragging ? '#cddeda' : '#DFEEEA')};
+  border-radius: 10px;
 `;
 
 const TaskboardItemCardTitle = styled(Typography.Title)`

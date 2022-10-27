@@ -128,7 +128,7 @@ function Taskboard() {
                   .find((item) => item.id === itemToEdit.id);
                 if (draftItem) {
                   draftItem.select = values.select;
-                  draftItem.description = values.select;
+                  draftItem.description = values.description;
                 }
               } else {
                 draft[TaskboardItemStatus.TO_DO].push({

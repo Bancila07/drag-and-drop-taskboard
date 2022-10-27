@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import {Modal, Form, ModalProps, Input, Select} from 'antd';
+import {Modal, Form, ModalProps, Input, Select,} from 'antd';
 import { TaskboardItem } from './TaskboardTypes';
 
 export type TaskboardItemFormValues = Pick<
